@@ -8,8 +8,8 @@
     <TemplateGuid>{98C37F10-6541-44BE-B1E6-7EB3EB8C08F1}</TemplateGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LeBonAngle.UWP</RootNamespace>
-    <AssemblyName>LeBonAngle.UWP</AssemblyName>
+    <RootNamespace>TitouisListing.UWP</RootNamespace>
+    <AssemblyName>TitouisListing.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.16299.0</TargetPlatformVersion>
@@ -18,7 +18,7 @@
     <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>LeBonAngle.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>TitouisListing.UWP_TemporaryKey.pfx</PackageCertificateKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -155,13 +155,13 @@
       <Version>106.6.9</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.0.1</Version>
+      <Version>1.1.0</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
-    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.5" />
+    <PackageReference Include="Xamarin.Forms" Version="3.6.0.344457" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.8" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LeBonAngle\TitouisListing.csproj">
+    <ProjectReference Include="..\TitouisListing\TitouisListing.csproj">
       <Project>{F9A23312-63DA-4E0C-9519-48D56984AB6B}</Project>
       <Name>TitouisListing</Name>
     </ProjectReference>
