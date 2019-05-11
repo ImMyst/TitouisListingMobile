@@ -14,7 +14,7 @@ namespace TitouisListing.Services
     public class TitouisListingWebServices
     {
         ////Exemples API1 (sans authentification)
-        //const string url = @"http://louis-charavner.fr:6667/api/v1/listings";
+        //const string url = @"http://louis-charavner.fr:8887/api/v1/annonce";
         //public async Task<List<Announce>> APIV1_GetAnnounces()
         //{
         //    HttpClient client = new HttpClient();
@@ -25,6 +25,7 @@ namespace TitouisListing.Services
 
         //Exemple API2 (avec authentification)
 
+        
         public async Task<bool> APIV2_AuthenticateUser()
         {
             try
@@ -34,13 +35,13 @@ namespace TitouisListing.Services
                 keys.Add("email", Settings.Login);
                 keys.Add("password", Settings.Pwd);
                 FormUrlEncodedContent content = new FormUrlEncodedContent(keys);
-                var response = await clientTest.PostAsync(@"http://louis-charavner.fr:6667/api/v1/auth_user", content);
+                var response = await clientTest.PostAsync(@"http://louis-charavner.fr:8887/api/v1/auth_user", content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    //TODO On récupère le token retourné, et on l'enregistre
+                    // TODO: On récupère le token retourné, et on l'enregistre
                     var responsedata = await response.Content.ReadAsStringAsync();
                     var responseformatted = JsonConvert.DeserializeObject<API_Response_Authenticate>(responsedata);
-                    Settings.TokenAPI = responseformatted.Token;
+                    Settings.TokenAPI = responseformatted.AuthToken;
                     return true;
                 }
                 else
@@ -59,15 +60,21 @@ namespace TitouisListing.Services
 
         public async Task<bool> APIV2_PostAnnounce(Product product)
         {
+
+            if (String.IsNullOrWhiteSpace(Settings.TokenAPI))
+            {
+                await APIV2_AuthenticateUser();
+            }
+
             try
             {
                 HttpClient client = new HttpClient();
-                client.DefaultRequestHeaders.Add("token", Settings.TokenAPI);
+                client.DefaultRequestHeaders.Add("Authorization", Settings.TokenAPI);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var contentstring = "{\"product\":" + JsonConvert.SerializeObject(product)  + "}";
                 StringContent content = new StringContent(contentstring, Encoding.UTF8, "application/json");
                 //content.Headers.Add("token", Settings.TokenAPI);
-                var response = await client.PostAsync(@"http://louis-charavner.fr:6667/api/v1/annonce", content);
+                var response = await client.PostAsync(@"http://louis-charavner.fr:8887/api/v1/annonce", content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //TODO on vérifie le product ?
@@ -108,8 +115,8 @@ namespace TitouisListing.Services
             try
             {
                 HttpClient clientTest = new HttpClient();
-                clientTest.DefaultRequestHeaders.Add("token", Settings.TokenAPI);
-                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:6667/api/v1/category");
+                clientTest.DefaultRequestHeaders.Add("Authorization", Settings.TokenAPI);
+                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:8887/api/v1/category");
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //OK, on désérialise et retourne le résultat
@@ -154,8 +161,8 @@ namespace TitouisListing.Services
             try
             {
                 HttpClient clientTest = new HttpClient();
-                clientTest.DefaultRequestHeaders.Add("token", Settings.TokenAPI);
-                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:6667/api/v1/annonce");
+                clientTest.DefaultRequestHeaders.Add("Authorization", Settings.TokenAPI);
+                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:8887/api/v1/annonce");
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //OK, on désérialise et retourne le résultat
@@ -200,8 +207,8 @@ namespace TitouisListing.Services
             try
             {
                 HttpClient clientTest = new HttpClient();
-                clientTest.DefaultRequestHeaders.Add("token", Settings.TokenAPI);
-                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:6667/api/v1/annonce/get" + id);
+                clientTest.DefaultRequestHeaders.Add("Authorization", Settings.TokenAPI);
+                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:8887/api/v1/annonce/get" + id);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //OK, on désérialise et retourne le résultat
@@ -247,8 +254,8 @@ namespace TitouisListing.Services
             try
             {
                 HttpClient clientTest = new HttpClient();
-                clientTest.DefaultRequestHeaders.Add("token", Settings.TokenAPI);
-                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:6667/api/v1/account");
+                clientTest.DefaultRequestHeaders.Add("Authorization", Settings.TokenAPI);
+                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:8887/api/v1/account");
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //OK, on désérialise et retourne le résultat
@@ -256,23 +263,10 @@ namespace TitouisListing.Services
                     var responseformatted = JsonConvert.DeserializeObject<API_Response_User>(responsedata);
                     return responseformatted.User;
                 }
-                else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                else
                 {
-                    //RéAuthentifie
-                    if (await APIV2_AuthenticateUser())
-                    {
-                        //On rejoue la requête après authentification correcte
-                        return await APIV2_GetMyAccount();
-                    }
-                    else
-                    {
-                        //Réauthentification NOK... dialog ?
-                    }
+                    Console.WriteLine($"APIV2_GetMyAccount Error ==> {response}");
                 }
-                //else
-                //{
-                //    //autre erreur
-                //}
 
             }
             catch (Exception ex)

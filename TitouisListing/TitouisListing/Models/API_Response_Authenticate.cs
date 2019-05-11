@@ -5,12 +5,12 @@ using System.Text;
 
 namespace TitouisListing.Models
 {
-    public class API_Response_Authenticate
+    public partial class API_Response_Authenticate
     {
-        [JsonProperty("success")]
-        public string Success { get; set; }
+        [JsonProperty("auth_token")]
+        public string AuthToken { get; set; }
 
-        [JsonProperty("token")]
-        public string Token { get; set; }
+        [JsonProperty("user")]
+        public User User { get; set; }
     }
 }
