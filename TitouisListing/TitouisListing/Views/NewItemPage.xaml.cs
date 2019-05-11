@@ -19,7 +19,7 @@ namespace TitouisListing.Views
 
             Item = new Product
             {
-                Title = "Item name",
+                Name = "Item name",
                 Description = "This is an item description."
             };
 

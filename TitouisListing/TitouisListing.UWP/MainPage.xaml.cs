@@ -21,7 +21,7 @@ namespace TitouisListing.UWP
         {
             this.InitializeComponent();
 
-            LoadApplication(new TitouisListing.App());
+            LoadApplication(new TitouisListing.TitouisApp());
         }
     }
 }

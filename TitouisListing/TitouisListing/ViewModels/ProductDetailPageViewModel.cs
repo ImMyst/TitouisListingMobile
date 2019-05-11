@@ -10,7 +10,7 @@ namespace TitouisListing.ViewModels
         public Product Item { get; set; }
         public ProductDetailPageViewModel(INavigation Navigation, Product item) : base(Navigation)
         {
-            Title = item?.Title;
+            Title = item?.Name;
             Item = item;
         }
     }
