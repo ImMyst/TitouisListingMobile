@@ -64,7 +64,7 @@ namespace TitouisListing.ViewModels
                     Settings.Pwd = Password;
                     Settings.TokenAPI = String.Empty;
 
-                    BonAngleWebServices client = new BonAngleWebServices();
+                    TitouisListingWebServices client = new TitouisListingWebServices();
                     var result = await client.APIV2_AuthenticateUser();
                     if (result)
                     {

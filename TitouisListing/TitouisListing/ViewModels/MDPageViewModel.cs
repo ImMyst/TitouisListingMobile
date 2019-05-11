@@ -25,7 +25,7 @@ namespace TitouisListing.ViewModels
             {
                 Task.Factory.StartNew(async () =>
                 {
-                    BonAngleWebServices client = new BonAngleWebServices();
+                    TitouisListingWebServices client = new TitouisListingWebServices();
                     var user = await client.APIV2_GetMyAccount();
                     UserName = user.Email;
                     Settings.UserID = user.Id;

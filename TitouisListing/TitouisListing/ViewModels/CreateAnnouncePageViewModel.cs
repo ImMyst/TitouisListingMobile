@@ -70,7 +70,7 @@ namespace TitouisListing.ViewModels
                     product.Price = price;
                     product.Category_ID = "1";
 
-                    BonAngleWebServices client = new BonAngleWebServices();
+                    TitouisListingWebServices client = new TitouisListingWebServices();
                     //TODO Changer l'API quand dispo...
                     var result = await client.APIV2_PostAnnounce(product);
                     if (result)

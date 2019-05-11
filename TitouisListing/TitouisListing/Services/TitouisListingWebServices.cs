@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace TitouisListing.Services
 {
-    public class BonAngleWebServices
+    public class TitouisListingWebServices
     {
         ////Exemples API1 (sans authentification)
-        //const string url = @"https://tranquil-harbor-23814.herokuapp.com/api/v1/listings";
+        //const string url = @"http://louis-charavner.fr:6667/api/v1/listings";
         //public async Task<List<Announce>> APIV1_GetAnnounces()
         //{
         //    HttpClient client = new HttpClient();
@@ -34,7 +34,7 @@ namespace TitouisListing.Services
                 keys.Add("email", Settings.Login);
                 keys.Add("password", Settings.Pwd);
                 FormUrlEncodedContent content = new FormUrlEncodedContent(keys);
-                var response = await clientTest.PostAsync(@"https://best-team-listing.herokuapp.com/api/v1/auth", content);
+                var response = await clientTest.PostAsync(@"http://louis-charavner.fr:6667/api/v1/auth_user", content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //TODO On récupère le token retourné, et on l'enregistre
@@ -67,7 +67,7 @@ namespace TitouisListing.Services
                 var contentstring = "{\"product\":" + JsonConvert.SerializeObject(product)  + "}";
                 StringContent content = new StringContent(contentstring, Encoding.UTF8, "application/json");
                 //content.Headers.Add("token", Settings.TokenAPI);
-                var response = await client.PostAsync(@"https://best-team-listing.herokuapp.com/api/v1/product", content);
+                var response = await client.PostAsync(@"http://louis-charavner.fr:6667/api/v1/annonce", content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //TODO on vérifie le product ?
@@ -109,7 +109,7 @@ namespace TitouisListing.Services
             {
                 HttpClient clientTest = new HttpClient();
                 clientTest.DefaultRequestHeaders.Add("token", Settings.TokenAPI);
-                var response = await clientTest.GetAsync(@"https://best-team-listing.herokuapp.com/api/v1/category");
+                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:6667/api/v1/category");
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //OK, on désérialise et retourne le résultat
@@ -155,7 +155,7 @@ namespace TitouisListing.Services
             {
                 HttpClient clientTest = new HttpClient();
                 clientTest.DefaultRequestHeaders.Add("token", Settings.TokenAPI);
-                var response = await clientTest.GetAsync(@"https://best-team-listing.herokuapp.com/api/v1/product");
+                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:6667/api/v1/annonce");
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //OK, on désérialise et retourne le résultat
@@ -201,7 +201,7 @@ namespace TitouisListing.Services
             {
                 HttpClient clientTest = new HttpClient();
                 clientTest.DefaultRequestHeaders.Add("token", Settings.TokenAPI);
-                var response = await clientTest.GetAsync(@"https://best-team-listing.herokuapp.com/api/v1/product/"+id);
+                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:6667/api/v1/annonce/get" + id);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //OK, on désérialise et retourne le résultat
@@ -248,7 +248,7 @@ namespace TitouisListing.Services
             {
                 HttpClient clientTest = new HttpClient();
                 clientTest.DefaultRequestHeaders.Add("token", Settings.TokenAPI);
-                var response = await clientTest.GetAsync(@"https://best-team-listing.herokuapp.com/api/v1/account");
+                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:6667/api/v1/account");
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //OK, on désérialise et retourne le résultat

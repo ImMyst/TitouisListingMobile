@@ -61,7 +61,7 @@ namespace TitouisListing.Ressources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le bon angle.
+        ///   Recherche une chaîne localisée semblable à Titouis Listing.
         /// </summary>
         internal static string ApplicationName {
             get {
