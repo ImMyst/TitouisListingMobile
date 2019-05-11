@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitouisListing.Android", "TitouisListing\TitouisListing.Android\TitouisListing.Android.csproj", "{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitouisListing.Android", "LeBonAngle\LeBonAngle.Android\TitouisListing.Android.csproj", "{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitouisListing.iOS", "TitouisListing\TitouisListing.iOS\TitouisListing.iOS.csproj", "{EE9ED516-F96D-4F9E-ADE9-9E995C8954E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitouisListing.iOS", "LeBonAngle\LeBonAngle.iOS\TitouisListing.iOS.csproj", "{EE9ED516-F96D-4F9E-ADE9-9E995C8954E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitouisListing.UWP", "TitouisListing\TitouisListing.UWP\TitouisListing.UWP.csproj", "{D4821B9A-B90E-4AE6-ABBE-D4CB1894C492}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitouisListing.UWP", "LeBonAngle\LeBonAngle.UWP\TitouisListing.UWP.csproj", "{D4821B9A-B90E-4AE6-ABBE-D4CB1894C492}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TitouisListing", "TitouisListing\TitouisListing\TitouisListing.csproj", "{F9A23312-63DA-4E0C-9519-48D56984AB6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TitouisListing", "LeBonAngle\LeBonAngle\TitouisListing.csproj", "{F9A23312-63DA-4E0C-9519-48D56984AB6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

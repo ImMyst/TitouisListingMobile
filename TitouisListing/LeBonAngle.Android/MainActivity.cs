@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using TitouisListing.Interfaces;
 using TitouisListing.Droid.Implementation;
 
 namespace TitouisListing.Droid
@@ -21,6 +22,7 @@ namespace TitouisListing.Droid
             base.OnCreate(savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            LoadApplication(new TitouisApp());
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)

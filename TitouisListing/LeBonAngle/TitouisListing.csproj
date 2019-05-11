@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <Compile Update="TitouisApp.xaml.cs">
-      <DependentUpon>TitouisApp.xaml</DependentUpon>
+      <DependentUpon>TitouisListing.xaml</DependentUpon>
     </Compile>
     <Compile Update="Ressources\MyAppRessources.Designer.cs">
       <DesignTime>True</DesignTime>
@@ -53,19 +53,37 @@
     <None Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <None Update="TitouisApp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\CreateAnnouncePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Update="Views\ItemDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\ItemsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+    <None Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Update="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MDPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\MenuPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Views\NewItemPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ProductDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\ProductListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
   </ItemGroup>

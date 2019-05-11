@@ -30,10 +30,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
-    <MandroidI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -106,9 +102,9 @@
     <Folder Include="Resources\drawable-xxxhdpi\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LeBonAngle\LeBonAngle.csproj">
-      <Project>{E05DF9A4-8ACC-4C5B-8801-7C613324A23E}</Project>
-      <Name>LeBonAngle</Name>
+    <ProjectReference Include="..\LeBonAngle\TitouisListing.csproj">
+      <Project>{F9A23312-63DA-4E0C-9519-48D56984AB6B}</Project>
+      <Name>TitouisListing</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
