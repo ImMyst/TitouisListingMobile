@@ -28,7 +28,7 @@ namespace TitouisListing.ViewModels
                     TitouisListingWebServices client = new TitouisListingWebServices();
                     var user = await client.APIV2_GetMyAccount();
                     UserName = user.Email;
-                    Settings.UserID = user.Id;
+                    Settings.UserID = user.Id.Oid;
                     //Fake, no image in the API
                     UserImage = ImageSource.FromUri(new Uri("http://www.sefairepayer.com/images/profils-debiteur/profil-irreductible.png"));
 
