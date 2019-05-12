@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+    <UseShortFileNames>True</UseShortFileNames>
+  </PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{24CE3C36-16B9-426D-AA0C-5961ECF8D88C}</ProjectGuid>
@@ -103,7 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TitouisListing\TitouisListing.csproj">
-      <Project>{F9A23312-63DA-4E0C-9519-48D56984AB6B}</Project>
+      <Project>{f9a23312-63da-4e0c-9519-48d56984ab6b}</Project>
       <Name>TitouisListing</Name>
     </ProjectReference>
   </ItemGroup>

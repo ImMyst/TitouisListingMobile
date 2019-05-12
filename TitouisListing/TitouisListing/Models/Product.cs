@@ -8,9 +8,9 @@ namespace TitouisListing.Models
     public class Product
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public Id Id { get; set; }
 
-        [JsonProperty("title")]
+        [JsonProperty("name")]
         public string Title { get; set; }
 
         [JsonProperty("description")]
@@ -30,5 +30,8 @@ namespace TitouisListing.Models
 
         [JsonProperty("updated_at")]
         public DateTime UpdatedAt { get; set; }
+
+        [JsonProperty("tags")]
+        public List<string> Tags{ get; set; }
     }
 }
