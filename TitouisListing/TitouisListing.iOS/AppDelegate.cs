@@ -23,7 +23,7 @@ namespace TitouisListing.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            LoadApplication(new TitouisApp());
 
             return base.FinishedLaunching(app, options);
         }
