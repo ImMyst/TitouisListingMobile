@@ -42,6 +42,7 @@ namespace TitouisListing.Services
                     var responsedata = await response.Content.ReadAsStringAsync();
                     var responseformatted = JsonConvert.DeserializeObject<API_Response_Authenticate>(responsedata);
                     Settings.TokenAPI = responseformatted.AuthToken;
+                    Settings.UserID = responseformatted.User.Id.Oid;
                     return true;
                 }
                 else
@@ -71,14 +72,16 @@ namespace TitouisListing.Services
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Add("Authorization", Settings.TokenAPI);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var contentstring = "{\"annonce\":" + JsonConvert.SerializeObject(product)  + "}";
+                var contentstring = "{\"product\":" + JsonConvert.SerializeObject(product) + ",\"email\":"+ Settings.Login + "}";
                 StringContent content = new StringContent(contentstring, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(@"http://louis-charavner.fr:8887/api/v1/annonce", content);
+                //content.Headers.Add("token", Settings.TokenAPI);
+                var response = await client.PostAsync(@"http://louis-charavner.fr:8887/api/v1/annonce/create", content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //TODO on vérifie le product ?
                     var responsedata = await response.Content.ReadAsStringAsync();
                     var responseformatted = JsonConvert.DeserializeObject<API_Response_Products>(responsedata);
+                    return true;
                 }
                 else
                 {
@@ -90,13 +93,12 @@ namespace TitouisListing.Services
                 Console.WriteLine(ex.ToString());
                 return false;
             }
-            return true;
         }
 
         //API_Response_Category
-        public async Task<List<Category>> APIV2_GetCategories()
+        public async Task<Category[]> APIV2_GetCategories()
         {
-            List<Category> resultats = new List<Category>();
+            var resultats = new Category[0];
             if (String.IsNullOrWhiteSpace(Settings.TokenAPI))
             {
                 await APIV2_AuthenticateUser();
@@ -140,9 +142,45 @@ namespace TitouisListing.Services
             return resultats;
         }
 
-        public async Task<List<Product>> APIV2_GetAnnounces()
+        public async Task<bool> APIV2_PostCategory(Category category)
         {
-            List<Product> resultats = new List<Product>();
+
+            if (String.IsNullOrWhiteSpace(Settings.TokenAPI))
+            {
+                await APIV2_AuthenticateUser();
+            }
+
+            try
+            {
+                HttpClient client = new HttpClient();
+                client.DefaultRequestHeaders.Add("Authorization", Settings.TokenAPI);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var contentstring = "{\"category\":" + JsonConvert.SerializeObject(category) + "}";
+                StringContent content = new StringContent(contentstring, Encoding.UTF8, "application/json");
+                //content.Headers.Add("token", Settings.TokenAPI);
+                var response = await client.PostAsync(@"http://louis-charavner.fr:8887/api/v1/category/create", content);
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    //TODO on vérifie le product ?
+                    var responsedata = await response.Content.ReadAsStringAsync();
+                    var responseformatted = JsonConvert.DeserializeObject<API_Response_Products>(responsedata);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return false;
+            }
+        }
+
+        public async Task<Product[]> APIV2_GetAnnounces()
+        {
+            var resultats = new Product[0];
             if (String.IsNullOrWhiteSpace(Settings.TokenAPI))
             {
                 await APIV2_AuthenticateUser();
@@ -203,11 +241,8 @@ namespace TitouisListing.Services
                 {
                     //OK, on désérialise et retourne le résultat
                     var responsedata = await response.Content.ReadAsStringAsync();
-                    var responseformatted = JsonConvert.DeserializeObject<API_Response_Products>(responsedata);
-                    if (responseformatted.Products.Count > 0)
-                    {
-                        return responseformatted.Products[0];
-                    }
+                    var responseformatted = JsonConvert.DeserializeObject<API_Response_Products_Id>(responsedata);
+                    return responseformatted.Products;
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
@@ -247,12 +282,12 @@ namespace TitouisListing.Services
             {
                 HttpClient clientTest = new HttpClient();
                 clientTest.DefaultRequestHeaders.Add("Authorization", Settings.TokenAPI);
-                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:8887/api/v1/account");
+                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:8887/api/v1/account/" + Settings.UserID);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //OK, on désérialise et retourne le résultat
                     var responsedata = await response.Content.ReadAsStringAsync();
-                    var responseformatted = JsonConvert.DeserializeObject<API_Response_User>(responsedata);
+                    var responseformatted = JsonConvert.DeserializeObject<API_Response_User_Id>(responsedata);
                     return responseformatted.User;
                 }
                 else

@@ -7,10 +7,7 @@ namespace TitouisListing.Models
 {
     public class API_Response_User
     {
-        [JsonProperty("success")]
-        public string Success { get; set; }
-
-        [JsonProperty("user")]
-        public User User { get; set; }
+        [JsonProperty("message")]
+        public User[] Users { get; set; }
     }
 }

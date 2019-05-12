@@ -5,9 +5,9 @@ using System.Text;
 
 namespace TitouisListing.Models
 {
-    public partial class API_Response_Products
+    public class API_Response_Products
     {
         [JsonProperty("message")]
-        public List<Product> Products { get; set; }
+        public Product[] Products { get; set; }
     }
 }
