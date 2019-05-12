@@ -19,8 +19,8 @@ namespace TitouisListing.Views
 
             Item = new Product
             {
-                Title = "Nom du produit",
-                Description = "Ceci est une description"
+                Name = "Item name",
+                Description = "This is an item description."
             };
 
             BindingContext = this;

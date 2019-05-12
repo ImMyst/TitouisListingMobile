@@ -73,23 +73,12 @@ namespace TitouisListing.Services
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var contentstring = "{\"product\":" + JsonConvert.SerializeObject(product)  + "}";
                 StringContent content = new StringContent(contentstring, Encoding.UTF8, "application/json");
-                //content.Headers.Add("token", Settings.TokenAPI);
                 var response = await client.PostAsync(@"http://louis-charavner.fr:8887/api/v1/annonce", content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //TODO on vérifie le product ?
                     var responsedata = await response.Content.ReadAsStringAsync();
                     var responseformatted = JsonConvert.DeserializeObject<API_Response_Products>(responsedata);
-                    if (responseformatted.Success == "true" 
-                        && responseformatted.Products != null 
-                        && responseformatted.Products.Count > 0)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
                 }
                 else
                 {
@@ -101,6 +90,7 @@ namespace TitouisListing.Services
                 Console.WriteLine(ex.ToString());
                 return false;
             }
+            return true;
         }
 
         //API_Response_Category
@@ -208,14 +198,16 @@ namespace TitouisListing.Services
             {
                 HttpClient clientTest = new HttpClient();
                 clientTest.DefaultRequestHeaders.Add("Authorization", Settings.TokenAPI);
-                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:8887/api/v1/annonce/get" + id);
+                var response = await clientTest.GetAsync(@"http://louis-charavner.fr:8887/api/v1/annonce/get/" + id);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //OK, on désérialise et retourne le résultat
                     var responsedata = await response.Content.ReadAsStringAsync();
                     var responseformatted = JsonConvert.DeserializeObject<API_Response_Products>(responsedata);
                     if (responseformatted.Products.Count > 0)
-                    return responseformatted.Products[0];
+                    {
+                        return responseformatted.Products[0];
+                    }
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {

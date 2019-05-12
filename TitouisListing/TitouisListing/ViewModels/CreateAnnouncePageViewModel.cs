@@ -65,10 +65,9 @@ namespace TitouisListing.ViewModels
                     && Double.TryParse(Prix, out price))
                 {
                     Product product = new Product();
-                    product.Title = Titre;
+                    product.Name = Titre;
                     product.Description = Description;
                     product.Price = price;
-                    product.Category_ID = "1";
 
                     TitouisListingWebServices client = new TitouisListingWebServices();
                     //TODO Changer l'API quand dispo...
