@@ -22,7 +22,7 @@ namespace TitouisListing.Models
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("photo_data")]
+        [JsonProperty("photo")]
         public string PhotoData { get; set; }
 
         [JsonProperty("price")]
