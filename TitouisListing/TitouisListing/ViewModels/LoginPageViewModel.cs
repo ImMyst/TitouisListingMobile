@@ -20,8 +20,8 @@ namespace TitouisListing.ViewModels
             Title = MyAppRessources.Title_AnnouncesPage;
             LoginCommand = new Command(async () => await ExecuteLoginCommand());
 #if DEBUG
-            Login = "jerome.liger@respawnsive.com";
-            Password = "BrHpd/XQ3,P%";
+            Login = "b@b.com";
+            Password = "lol123";
 #endif
         }
 
