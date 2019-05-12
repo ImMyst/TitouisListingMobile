@@ -20,9 +20,7 @@
                     <Image Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
                            Source="{Binding UserImage}"
                            HeightRequest="80"
-                           WidthRequest="80"
-                           BackgroundColor="Gray"
-                           Margin="5"/>
+                           WidthRequest="80"/>
                     <Label Grid.Row="0" Grid.Column="1" 
                            Text="{Binding UserName}"
                            Margin="5"/>

@@ -10,7 +10,7 @@
           <Label Text="{res:Translate LoginPage_LblPwd}" FontSize="Large" />
           <Entry Text="{Binding Password}"/>
           <Button Text="{res:Translate LoginPage_BtnSubmit}" Command="{Binding LoginCommand}" FontSize="Large"/>
-          <Label Text="{Binding ErrorMessage}" TextColor="Red" />
+          <Label Text="{Binding ErrorMessage}" TextColor="{DynamicResource ErrorTextColor}" />
           <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}"/>
       </StackLayout>
   </ContentPage.Content>

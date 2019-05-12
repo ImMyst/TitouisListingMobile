@@ -37,7 +37,7 @@
 
                 <Button Text="Créer l'annonce" Command="{Binding SubmitCommand}"/>
                 
-                <Label Text="{Binding ErrorMessage}" TextColor="Red"/>
+                <Label Text="{Binding ErrorMessage}" TextColor="{DynamicResource ErrorTextColor}"/>
                 
             </StackLayout>
         </ScrollView>
