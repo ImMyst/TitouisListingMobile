@@ -13,19 +13,6 @@ namespace TitouisListing.Services
 {
     public class TitouisListingWebServices
     {
-        ////Exemples API1 (sans authentification)
-        //const string url = @"http://louis-charavner.fr:8887/api/v1/annonce";
-        //public async Task<List<Announce>> APIV1_GetAnnounces()
-        //{
-        //    HttpClient client = new HttpClient();
-        //    var brutdata = await client.GetStringAsync(url);
-        //    return JsonConvert.DeserializeObject<List<Announce>>(brutdata);
-        //}
-
-
-        //Exemple API2 (avec authentification)
-
-        
         public async Task<bool> APIV2_AuthenticateUser()
         {
             try
@@ -38,7 +25,6 @@ namespace TitouisListing.Services
                 var response = await clientTest.PostAsync(@"http://louis-charavner.fr:8887/api/v1/auth_user", content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    // TODO: On récupère le token retourné, et on l'enregistre
                     var responsedata = await response.Content.ReadAsStringAsync();
                     var responseformatted = JsonConvert.DeserializeObject<API_Response_Authenticate>(responsedata);
                     Settings.TokenAPI = responseformatted.AuthToken;
@@ -129,10 +115,6 @@ namespace TitouisListing.Services
                         //Réauthentification NOK... dialog ?
                     }
                 }
-                //else
-                //{
-                //    //autre erreur
-                //}
 
             }
             catch (Exception ex)
@@ -161,7 +143,6 @@ namespace TitouisListing.Services
                 var response = await client.PostAsync(@"http://louis-charavner.fr:8887/api/v1/category/create", content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
-                    //TODO on vérifie le product ?
                     var responsedata = await response.Content.ReadAsStringAsync();
                     var responseformatted = JsonConvert.DeserializeObject<API_Response_Products>(responsedata);
                     return true;
@@ -211,10 +192,6 @@ namespace TitouisListing.Services
                         //Réauthentification NOK... dialog ?
                     }
                 }
-                //else
-                //{
-                //    //autre erreur
-                //}
 
             }
             catch (Exception ex)
@@ -257,10 +234,6 @@ namespace TitouisListing.Services
                         //Réauthentification NOK... dialog ?
                     }
                 }
-                //else
-                //{
-                //    //autre erreur
-                //}
 
             }
             catch (Exception ex)

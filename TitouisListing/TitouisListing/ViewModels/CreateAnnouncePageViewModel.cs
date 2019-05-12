@@ -70,7 +70,6 @@ namespace TitouisListing.ViewModels
                     product.Price = price;
 
                     TitouisListingWebServices client = new TitouisListingWebServices();
-                    //TODO Changer l'API quand dispo...
                     var result = await client.APIV2_PostAnnounce(product);
                     if (result)
                     {
