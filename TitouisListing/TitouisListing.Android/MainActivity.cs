@@ -8,6 +8,9 @@ using Android.Widget;
 using Android.OS;
 using TitouisListing.Interfaces;
 using TitouisListing.Droid.Implementation;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace TitouisListing.Droid
 {
@@ -23,6 +26,7 @@ namespace TitouisListing.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new TitouisApp());
+            AppCenter.Start("aeb09552-54b3-4077-bf69-21e5876d03e1", typeof(Analytics), typeof(Crashes));
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)

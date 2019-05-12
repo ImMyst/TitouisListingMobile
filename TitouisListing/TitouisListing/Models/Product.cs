@@ -7,31 +7,28 @@ namespace TitouisListing.Models
 {
     public class Product
     {
-        [JsonProperty("id")]
+        [JsonProperty("_id")]
         public Id Id { get; set; }
 
-        [JsonProperty("name")]
-        public string Title { get; set; }
+        [JsonProperty("author")]
+        public string Author { get; set; }
+
+        [JsonProperty("date")]
+        public DateTimeOffset Date { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonProperty("category_id")]
-        public string Category_ID { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("photo_data")]
+        public string PhotoData { get; set; }
 
         [JsonProperty("price")]
         public double Price { get; set; }
 
-        [JsonProperty("user_id")]
-        public string UserId { get; set; }
-
-        [JsonProperty("created_at")]
-        public DateTime CreatedAt { get; set; }
-
-        [JsonProperty("updated_at")]
-        public DateTime UpdatedAt { get; set; }
-
         [JsonProperty("tags")]
-        public List<string> Tags{ get; set; }
+        public string[] Tags { get; set; }
     }
 }

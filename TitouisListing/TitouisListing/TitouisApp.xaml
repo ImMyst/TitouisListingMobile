@@ -5,10 +5,18 @@
     <Application.Resources>
         <ResourceDictionary>
             <!--Global Styles-->
-            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="NavigationPrimary">#2b5797</Color>
+            <Color x:Key="ErrorTextColor">#da5a53</Color>
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
+            </Style>
+            <Style TargetType="Image">
+                <Setter Property="BackgroundColor" Value="White" />
+                <Setter Property="Margin" Value="5" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="CornerRadius" Value="3" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>
