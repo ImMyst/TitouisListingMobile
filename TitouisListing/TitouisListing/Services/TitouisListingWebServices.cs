@@ -71,7 +71,7 @@ namespace TitouisListing.Services
                 HttpClient client = new HttpClient();
                 client.DefaultRequestHeaders.Add("Authorization", Settings.TokenAPI);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                var contentstring = "{\"product\":" + JsonConvert.SerializeObject(product)  + "}";
+                var contentstring = "{\"annonce\":" + JsonConvert.SerializeObject(product)  + "}";
                 StringContent content = new StringContent(contentstring, Encoding.UTF8, "application/json");
                 var response = await client.PostAsync(@"http://louis-charavner.fr:8887/api/v1/annonce", content);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
